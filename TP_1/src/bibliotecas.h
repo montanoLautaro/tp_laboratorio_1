@@ -1,13 +1,7 @@
-/*
- * bibliotecas.h
- *
- *  Created on: 9 abr. 2022
- *      Author: hered
- */
-
-#ifndef BIBLIOTECAS_H_
-#define BIBLIOTECAS_H_
-
-
-
-#endif /* BIBLIOTECAS_H_ */
+int IngresarKilometros(void);
+int IngresarPreciosVuelosLatam(void);
+int IngresarPreciosVuelosAerolineas(void);
+float CalcularcostosDebito(int);
+float CalcularCostosCredito(int);
+float CalcularCostosBtc(int);
+float CalcularPrecioPorKilometro(int);
