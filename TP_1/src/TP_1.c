@@ -1,7 +1,7 @@
 /*
  ============================================================================
  Name        : TP_1.c
- Author      : Montaño Heredia Lautaro Nahuel DIV C
+ Author      : Montaño Heredia Lautaro Nahuel. DIV C
  Enunciado : Una agencia de viaje necesita calcular costos para sus vuelos de Latam y Aerolíneas Argentinas
 para ofrecerlos a sus clientes.
 Se deberá ingresar por cada vuelo los km totales y el precio total del mismo.
@@ -41,9 +41,9 @@ La diferencia de precio es : r “
 int main(){
 	setbuf(stdout,NULL);
 	int opcion;
-	int kilometros;
-	int precioVuelosLatam;
-	int precioVuelosAerolineas;
+	float kilometros;
+	float precioVuelosLatam;
+	float precioVuelosAerolineas;
 	float precioDebitoLatam;
 	float precioDebitoAerolineas;
 	float precioCreditoAerolineas;
@@ -52,26 +52,28 @@ int main(){
 	float precioBtcAerolineas;
 	float precioPorKilometroLatam;
 	float precioPorKilometroAerolinas;
+	float diferenciaPrecio;
 
 	char seguir;
 	seguir = 's';
 	do{
-		printf("1. Ingresar kilometros: \n");
+		printf("\n1. Ingresar kilometros: \n");
 		printf("2. Ingresar el precio de los vuelos: \n");
 		printf("3. Calcular todos los costos \n");
 		printf("4. Informar los resultados\n");
 		printf("5. Carga forzada de datos\n");
-		printf("6. Salir\n");
+		printf("6. Salir\n\n");
 		printf("Elija una opcion: ");
 		scanf("%d", &opcion);
 		switch(opcion){
 			case 1:
-				printf("Por favor ingrese los kilometros: ");
 				kilometros=IngresarKilometros();
 				break;
 			case 2:
-				precioVuelosLatam=IngresarPreciosVuelosLatam();
-				precioVuelosAerolineas=IngresarPreciosVuelosAerolineas();
+				printf("\nPor favor ingrese el precio de los vuelos de Aerolineas Argentinas: \n");
+				precioVuelosLatam=IngresarPreciosVuelos();
+				printf("\nPor favor ingrese el precio de los vuelos de Latam: \n");
+				precioVuelosAerolineas=IngresarPreciosVuelos();
 				break;
 			case 3:
 				printf("\na) Se estan calculando los precios con debito...");
@@ -83,15 +85,34 @@ int main(){
 				printf("\nc) Se esta calculando los precios en Bitcoins...");
 				precioBtcLatam= CalcularCostosBtc(precioVuelosLatam);
 				precioBtcAerolineas=CalcularCostosBtc(precioVuelosAerolineas);
-				precioPorKilometroLatam=(float)precioVuelosLatam/kilometros;
-				precioPorKilometroAerolinas=(float)precioVuelosAerolineas/kilometros;
+				precioPorKilometroLatam=CalcularPrecioUnitario(precioVuelosLatam,kilometros);
+				precioPorKilometroAerolinas=CalcularPrecioUnitario(precioVuelosAerolineas,kilometros);
 				printf("\nd) Precio por kilometro en Latam: $%.2f",precioPorKilometroLatam);
-				printf("\n   Precio por kilometro en Aerolineas: $%.2f \n",precioPorKilometroAerolinas);
+				printf("\n   Precio por kilometro en Aerolineas Argentinas: $%.2f",precioPorKilometroAerolinas);
+				diferenciaPrecio=CalcularDiferenciaPrecio(precioVuelosLatam,precioVuelosAerolineas);
+				printf("\ne) Diferencia de precio ingresada: $%.2f \n\n",diferenciaPrecio);
 				break;
 			case 4:
-				printf("precio debito: %f", precioDebitoLatam);
+				printf("\nPrecios Latam: \n");
+				MostrarResultados(precioDebitoLatam,precioCreditoLatam,precioBtcLatam,precioPorKilometroLatam);
+				printf("Precios Aerolineas Argentinas: \n");
+				MostrarResultados(precioDebitoAerolineas,precioCreditoAerolineas,precioBtcAerolineas,precioPorKilometroAerolinas);
 				break;
 			case 5:
+				kilometros=7090;
+				precioVuelosLatam=159339;
+				precioVuelosAerolineas=162965;
+				precioDebitoLatam=CalcularcostosDebito(precioVuelosLatam);
+				precioDebitoAerolineas=CalcularcostosDebito(precioVuelosAerolineas);
+				precioBtcLatam= CalcularCostosBtc(precioVuelosLatam);
+				precioBtcAerolineas=CalcularCostosBtc(precioVuelosAerolineas);
+				precioPorKilometroLatam=CalcularPrecioUnitario(precioVuelosLatam,kilometros);
+				precioPorKilometroAerolinas=CalcularPrecioUnitario(precioVuelosAerolineas,kilometros);
+				printf("\nKilometros Ingresados: %.2f\n\n", kilometros);
+				printf("Precio Aerolineas Argentinas: $%.2f \n", precioVuelosAerolineas);
+				MostrarResultados(precioDebitoAerolineas,precioCreditoAerolineas,precioBtcAerolineas,precioPorKilometroAerolinas);
+				printf("Precio Latam: $%.2f \n", precioVuelosLatam);
+				MostrarResultados(precioDebitoLatam,precioCreditoLatam,precioBtcLatam,precioPorKilometroLatam);
 				break;
 			case 6:
 				printf("Gracias por usar nuestra app.");

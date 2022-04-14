@@ -1,7 +1,10 @@
-int IngresarKilometros(void);
-int IngresarPreciosVuelosLatam(void);
-int IngresarPreciosVuelosAerolineas(void);
-float CalcularcostosDebito(int);
-float CalcularCostosCredito(int);
-float CalcularCostosBtc(int);
-float CalcularPrecioPorKilometro(int);
+float IngresarKilometros(void);
+float IngresarPreciosVuelos(void);
+float ValidarNumero(float,float,char[]);
+float CalcularcostosDebito(float);
+float CalcularCostosCredito(float);
+float CalcularCostosBtc(float);
+float CalcularPrecioPorKilometro(float);
+float CalcularPrecioUnitario(float, float);
+float CalcularDiferenciaPrecio(float, float);
+void MostrarResultados(float,float,float,float);
