@@ -438,7 +438,7 @@ int printPassengerMayorAlPromedio(sPassenger listaPasajero[], int len, sTypesPas
 	return resultado;
 }
 
-int printPassengerVueloYCodigoActivo(sPassenger listaPasajero[], int len, sTypesPassenger listaTipo[], int sizeTipo, sStatusFlight listaStatus[], int sizeStatus){
+int printPassengerEstadoVueloYCodigoActivo(sPassenger listaPasajero[], int len, sTypesPassenger listaTipo[], int sizeTipo, sStatusFlight listaStatus[], int sizeStatus){
 	int resultado;
 	resultado = -1;
 	int anchoColumnaNombres = -20;
